@@ -49,6 +49,10 @@
                     </div>
                     <div class="card-body">
                         <form action="/todo/modify" method="post">
+
+                            <input type="hidden" name="page" value="${pageRequestDTO.page}">
+                            <input type="hidden" name="size" value="${pageRequestDTO.size}">
+
                             <div class="input-group mb-3">
                                 <span class="input-group-text">TNO</span>
                                 <input type="text" name="tno" class="form-control" value='<c:out value="${dto.tno}"></c:out>' readonly>
@@ -102,7 +106,7 @@
                             e.preventDefault()
                             e.stopPropagation()
 
-                            formObj.action = "/todo/remove"
+                            formObj.action = "/todo/remove?${pageRequestDTO.link}"
                             formObj.method = "post"
 
                             formObj.submit()
@@ -113,7 +117,7 @@
                             e.preventDefault()
                             e.stopPropagation()
 
-                            formObj.action = "/todo/modify"
+                            formObj.action = "/todo/modify?tno=${dto.tno}&${pageRequestDTO.link}";
                             formObj.method = "post"
 
                             formObj.submit()
@@ -125,7 +129,7 @@
                             e.preventDefault()
                             e.stopPropagation()
 
-                            self.location = "/todo/list";
+                            self.location = "/todo/list?${pageRequestDTO.link}";
 
                         }, false);
                     </script>
